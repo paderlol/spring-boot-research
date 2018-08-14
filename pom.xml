@@ -26,6 +26,7 @@
   </properties>
 <modules>
   <module>devtool-research</module>
+  <module>spring-boot-auto-customize</module>
 </modules>
 
 </project>

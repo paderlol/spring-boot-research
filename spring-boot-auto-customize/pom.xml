@@ -2,22 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>spring-boot-research</artifactId>
+    <groupId>com.paderlol.spring</groupId>
+    <version>1.0.0</version>
+  </parent>
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.paderlol.spring</groupId>
-  <artifactId>devtool-research</artifactId>
+  <artifactId>spring-boot-auto-customize</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>devtool-research</name>
-  <description>devtool-research</description>
-
-<parent>
-  <groupId>com.paderlol.spring</groupId>
-  <artifactId>spring-boot-research</artifactId>
-  <version>1.0.0</version>
-</parent>
-
+  <description>customize a autoconfigure about calculate the sum of 1 to 10 with Java7 and Java8
+    respectively
+  </description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -30,13 +28,8 @@
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -57,6 +50,4 @@
       </plugin>
     </plugins>
   </build>
-
-
 </project>
