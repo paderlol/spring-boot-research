@@ -8,9 +8,7 @@
     <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.paderlol.spring</groupId>
-  <artifactId>spring-boot-auto-customize</artifactId>
-  <version>1.0.0</version>
+  <artifactId>auto-customize</artifactId>
   <packaging>jar</packaging>
 
   <description>customize a autoconfigure about calculate the sum of 1 to 10 with Java7 and Java8
@@ -46,6 +44,7 @@
         <configuration>
           <!-- 默认会在打包的时候去掉dev-tool包,所以要开启远程需要进行开启 -->
           <!--<excludeDevtools>false</excludeDevtools>-->
+
         </configuration>
       </plugin>
     </plugins>

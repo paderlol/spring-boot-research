@@ -26,7 +26,8 @@
   </properties>
 <modules>
   <module>devtool-research</module>
-  <module>spring-boot-auto-customize</module>
+  <module>auto-customize</module>
+  <module>banner-customize</module>
 </modules>
 
 </project>
