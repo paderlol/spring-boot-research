@@ -16,6 +16,11 @@
 | ${spring-boot.formatted-version} | 前缀带**v**Spring-Boot 版本号                |
 | ${application.title}             | 应用名称                                     |
 
+>  **Note**:
+>
+> - **2.0版本之后弃用了之前的老属性banner.xx,目前所有属性使用spring.banner.xx** 
+> - `spring.main.show-banner`弃用，改为 `spring.main.banner-mode`
+
 ```verilog
   _____          _
  |  __ \        | |
