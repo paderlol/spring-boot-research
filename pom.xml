@@ -28,6 +28,7 @@
   <module>devtool-research</module>
   <module>auto-customize</module>
   <module>banner-customize</module>
+  <module>listeners-customize</module>
 </modules>
 
 </project>
