@@ -55,3 +55,12 @@ public CommandLineArgs parse(String... args) {
 > - 当实际使用中**ApplicationRunner**或者**CommandLineRunner**接口需要排序时，可以实现`org.springframework.core.Ordered`接口或者`org.springframework.core.annotation.Order`注解
 >
 >
+
+#### 设置命令参数
+
+> 命令行参数通常是Main函数入口参数,默认情况下Spring Boot 会把传入的命令行参数,添加到当前变量,并且优于大部分的属性源,所以如果不希望把命令行参数添加到当前环境变量，可以如下操作
+
+```java
+// 注意：这个属性设置只是不允许把命令行参数注册到当前的Environment,也就是不能进行@value注解引用命令行参数,但是ApplicationArguments 这个参数还是可以正常使用的
+SpringApplication.setAddCommandLineProperties(false);
+```

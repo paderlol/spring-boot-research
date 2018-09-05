@@ -30,6 +30,7 @@
   <module>banner-practice</module>
   <module>listeners-practice</module>
   <module>runner-practice</module>
+  <module>random-practice</module>
 </modules>
 
 </project>
