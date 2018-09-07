@@ -7,6 +7,7 @@
 #### [运行事件](https://github.com/paderlol/spring-boot-research/tree/master/listeners-practice)
 #### [启动后回调接口](https://github.com/paderlol/spring-boot-research/tree/master/runner-practice)
 #### [随机属性注入](https://github.com/paderlol/spring-boot-research/tree/master/random-practice)
+#### [application属性文件](https://github.com/paderlol/spring-boot-research/tree/master/properties-practice)
 
 
 

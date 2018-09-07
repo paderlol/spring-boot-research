@@ -31,6 +31,7 @@
   <module>listeners-practice</module>
   <module>runner-practice</module>
   <module>random-practice</module>
+  <module>properties-practice</module>
 </modules>
 
 </project>

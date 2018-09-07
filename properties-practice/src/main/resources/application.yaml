@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: "random-practice"
+  profiles:
+    include: prod
+    active: dev
+map:
+  practice:
+    string-map:
+      key:
+        "value"
+
+    entity-map:
+      key2:
+        name: "person name"
+        age: 10
+      key3:
+        name: "person name"
+        age: 10
+collection:
+  practice:
+    string-list:
+    - value-list-1
+    - value-list-2
+    entity-list:
+    - name: "Jack"
+      age: 20
+    - name: "Tom"
+      age: 23
+
+
+server:
+  port: 8081
+acme:
+  enabled: true
+  remote-address: "127.0.0.1"
+  security:
+    password: "1234567"
+    roles:
+      - "ADMIN"
+      - "USER"
+---
+spring:
+  profiles: default
+server:
+  port: 8881
+---
+spring:
+  profiles: dev
+server:
+  address: 127.0.0.1
+  port: 8882
+---
+spring:
+  profiles: prod
+server:
+  address: 127.0.0.1
+  port: 8883

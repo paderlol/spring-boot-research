@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: "random-practice-prod"
+map:
+  practice:
+      string-map:
+        key:
+          "value-prod"
+
+      entity-map:
+        key2:
+          name: "person name-prod"
+          age: 10
+        key3:
+          name: "person name-prod"
+          age: 10
+collection:
+  practice:
+    string-list:
+    - value-list-1-prod
+    - value-list-2-prod
+    entity-list:
+    - name: "Jack-prod"
+      age: 20
+    - name: "Tom-prod"
+      age: 23

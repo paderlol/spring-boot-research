@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    include: chinese
+map:
+  practice:
+      string-map:
+        key:
+          "value-dev"
+
+      entity-map:
+        key2:
+          name: "person name-dev"
+          age: 10
+        key3:
+          name: "person name-dev"
+          age: 10
+collection:
+  practice:
+    string-list:
+    - value-list-1-dev
+    - value-list-2-dev
+    entity-list:
+    - name: "Jack-dev"
+      age: 20
+    - name: "Tom-dev"
+      age: 23
