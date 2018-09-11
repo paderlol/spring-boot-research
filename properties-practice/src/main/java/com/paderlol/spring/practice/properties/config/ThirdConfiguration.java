@@ -1,0 +1,19 @@
+package com.paderlol.spring.practice.properties.config;
+
+import com.paderlol.spring.practice.properties.ThirdComponent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author pader
+ */
+@Configuration
+public class ThirdConfiguration {
+
+    @ConfigurationProperties("third")
+    @Bean
+    public ThirdComponent thirdComponent(){
+        return new ThirdComponent();
+    }
+}

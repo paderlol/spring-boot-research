@@ -37,8 +37,13 @@ acme:
   security:
     password: "1234567"
     roles:
-      - "ADMIN"
-      - "USER"
+    - "ADMIN"
+    - "USER"
+# 第三方配置引用
+third:
+  port: 9999
+  enable: false
+  url: localhost
 ---
 spring:
   profiles: default
