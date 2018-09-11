@@ -131,5 +131,27 @@ public class AcmeProperties {
 >
 > 1. 如果是Map或者List类型,如果声明了初始化,那么可以不用添加setter函数,但是通常**建议还是加上**
 > 2. 如果使用**lombok**来简化**getter**和**setter**工作,那么需要注意不要提供有参的构造函数,否则可能spring注入会出现问题
-> 3. 目前不支持静态字段的注入
+> 3. 如果是嵌套属性,如上述例子中的“Security”字段,则可以不用setter,但是如果是通过构造函数注入则需要提供setter
+> 4. 目前不支持静态字段的注入
+
+#### 第三方配置
+
+> 除了把@`ConfigurationProperties`注解使用在类上,还可以把这个注解使用在带有**@Bean**注解的**方法**上面
+>
+> 场景主要在:引入第三方类的场景下,如下
+
+```java
+/**
+ * @author pader
+ */
+@Configuration
+public class ThirdConfiguration {
+
+    @ConfigurationProperties("third")
+    @Bean
+    public ThirdComponent thirdComponent(){
+        return new ThirdComponent();
+    }
+}
+```
 
