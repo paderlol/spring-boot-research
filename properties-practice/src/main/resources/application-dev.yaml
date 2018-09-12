@@ -3,19 +3,24 @@ spring:
     include: chinese
 map:
   practice:
-      string-map:
-        key:
-          "value-dev"
+    string-map:
+      key:
+        "value-dev"
 
-      entity-map:
-        key2:
-          name: "person name-dev"
-          age: 10
-        key3:
-          name: "person name-dev"
-          age: 10
+    entity-map:
+      key2:
+        name: "person name-dev"
+        age: 10
+      key3:
+        name: "person name-dev"
+        age: 10
+#string-list: value-list-1-dev,value-list-2-dev
+#EQ
+#string-list:
+#    - value-list-1-dev
+#    - value-list-2-dev
 collection:
-  practice:
+  practice:@ConfigurationProperties
     string-list:
     - value-list-1-dev
     - value-list-2-dev

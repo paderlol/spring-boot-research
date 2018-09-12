@@ -154,4 +154,47 @@ public class ThirdConfiguration {
     }
 }
 ```
+#### 松散绑定
 
+> Spring Boot使用一些宽松的规则将Environment属性绑定到@ConfigurationProperties bean，因此不需要在Environment属性名和bean属性名之间进行精确匹配。这有用的常见示例包括破折号分隔的环境属性（例如，context-path绑定到contextPath）和大写环境属性（例如，PORT绑定到端口）。
+
+```java
+@ConfigurationProperties(prefix="acme.my-project.person")
+public class OwnerProperties {
+
+	private String firstName;
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+}
+```
+
+
+
+| Property                            | Note                                             |
+| ----------------------------------- | ------------------------------------------------ |
+| `acme.my-project.person.first-name` | 建议在 `.properties` and `.yml` 文件中使用.      |
+| `acme.myProject.person.firstName`   | 标准的驼峰命名                                   |
+| `acme.my_project.person.first_name` | 下划线命名, `.properties` and `.yml` 文件中使用. |
+| `ACME_MYPROJECT_PERSON_FIRSTNAME`   | 大写下划线命名, 在环境变量中使用.                |
+
+**Note:**当在注解（`@ConfigurationProperties`）中配置 `prefix` 属性并且使用短横线分割时,请一定要保持小写,比如 `acme.my-project.person`.
+
+**每个属性源绑定的规则**：
+
+| 属性元                | 基本规则                          | 集合规则                                                     |
+| --------------------- | --------------------------------- | ------------------------------------------------------------ |
+| Properties Files      | 驼峰命名, 短横线命名,  下划线命名 | 使用[]或逗号分隔值的标准列表语法                             |
+| YAML Files            | 驼峰命名, 短横线命名,  下划线命名 | 使用YAML语法或逗号分隔值的标准列表语法                       |
+| Environment Variables | 下划线命名并且大写                | 下划线包围的数字值, 比如`MY_ACME_1_OTHER = my.acme[1].other` |
+| System properties     | 驼峰命名, 短横线命名,  下划线命名 | 使用[]或逗号分隔值的标准列表语法                             |
+
+**官方推荐属性写法**：
+
+> 在尽可能的情况下,请使用小写的短横线命名的方法会,比如： `my.property-name=acme`.
