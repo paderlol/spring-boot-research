@@ -136,7 +136,7 @@ public class AcmeProperties {
 
 #### 第三方配置
 
-> 除了把@`ConfigurationProperties`注解使用在类上,还可以把这个注解使用在带有**@Bean**注解的**方法**上面
+> 除了把@`ConfigurationProperties`注解使用在类上,还可以把这个注解使用在带有 **@Bean**注解的**方法**上面
 >
 > 场景主要在:引入第三方类的场景下,如下
 
@@ -184,9 +184,9 @@ public class OwnerProperties {
 | `acme.my_project.person.first_name` | 下划线命名, `.properties` and `.yml` 文件中使用. |
 | `ACME_MYPROJECT_PERSON_FIRSTNAME`   | 大写下划线命名, 在环境变量中使用.                |
 
-**Note:**当在注解（`@ConfigurationProperties`）中配置 `prefix` 属性并且使用短横线分割时,请一定要保持小写,比如 `acme.my-project.person`.
+**Note:** 当在注解（`@ConfigurationProperties`）中配置 `prefix` 属性并且使用短横线分割时,请一定要保持小写,比如 `acme.my-project.person`.
 
-**每个属性源绑定的规则**：
+**每个属性源绑定的规则** ：
 
 | 属性元                | 基本规则                          | 集合规则                                                     |
 | --------------------- | --------------------------------- | ------------------------------------------------------------ |
