@@ -1,4 +1,4 @@
-package com.paderlol.spring.practice.properties;
+package com.paderlol.spring.practice.properties.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

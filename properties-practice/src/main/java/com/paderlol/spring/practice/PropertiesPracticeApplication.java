@@ -1,12 +1,11 @@
 package com.paderlol.spring.practice;
 
-import com.paderlol.spring.practice.properties.AcmeProperties;
-import com.paderlol.spring.practice.properties.CollectionProperties;
-import com.paderlol.spring.practice.properties.MapProperties;
-import com.paderlol.spring.practice.properties.ThirdComponent;
+import com.paderlol.spring.practice.properties.pojo.AcmeProperties;
+import com.paderlol.spring.practice.properties.pojo.CollectionProperties;
+import com.paderlol.spring.practice.properties.pojo.MapProperties;
+import com.paderlol.spring.practice.properties.pojo.ThirdComponent;
 import com.paderlol.spring.practice.properties.service.LanguageService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

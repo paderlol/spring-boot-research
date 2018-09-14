@@ -1,4 +1,4 @@
-package com.paderlol.spring.practice.properties;
+package com.paderlol.spring.practice.properties.pojo;
 
 import java.net.InetAddress;
 import java.util.ArrayList;

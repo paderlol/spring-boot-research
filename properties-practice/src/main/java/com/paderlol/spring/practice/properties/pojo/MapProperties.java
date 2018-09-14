@@ -1,5 +1,6 @@
-package com.paderlol.spring.practice.properties;
+package com.paderlol.spring.practice.properties.pojo;
 
+import com.paderlol.spring.practice.properties.pojo.Person;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;

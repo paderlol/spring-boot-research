@@ -1,6 +1,6 @@
 package com.paderlol.spring.practice.properties.config;
 
-import com.paderlol.spring.practice.properties.ThirdComponent;
+import com.paderlol.spring.practice.properties.pojo.ThirdComponent;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
