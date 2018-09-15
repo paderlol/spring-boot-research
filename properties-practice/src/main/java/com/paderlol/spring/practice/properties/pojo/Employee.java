@@ -1,5 +1,7 @@
 package com.paderlol.spring.practice.properties.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "random-practice"
+    name: "random-practice-test"
   profiles:
     include: prod
     active: dev
@@ -31,19 +31,7 @@ collection:
 
 server:
   port: 8081
-acme:
-  enabled: true
-  remote-address: "127.0.0.1"
-  security:
-    password: "1234567"
-    roles:
-    - "ADMIN"
-    - "USER"
-# 第三方配置引用
-third:
-  port: 9999
-  enable: false
-  url: localhost
+
 ---
 spring:
   profiles: default

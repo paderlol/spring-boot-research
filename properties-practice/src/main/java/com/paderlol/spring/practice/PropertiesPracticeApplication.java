@@ -48,11 +48,11 @@ public class PropertiesPracticeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Third-party Configuration={}", thirdComponent.toString());
-        log.info("Nested Bean Properties={}", acmeProperties.toString());
-        log.info("Language Service={}", languageService.getLanguage());
-        log.info("String Map Properties={}", mapProperties.getStringMap().entrySet());
-        log.info("Entity Map Properties={}", mapProperties.getEntityMap().entrySet());
+//        log.info("Third-party Configuration={}", thirdComponent.toString());
+//        log.info("Nested Bean Properties={}", acmeProperties.toString());
+//        log.info("Language Service={}", languageService.getLanguage());
+//        log.info("String Map Properties={}", mapProperties.getStringMap().entrySet());
+//        log.info("Entity Map Properties={}", mapProperties.getEntityMap().entrySet());
         log.info("String Collection Properties={}", collectionProperties.getStringList());
         log.info("Entity Collection Properties={}", collectionProperties.getEntityList());
     }

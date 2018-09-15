@@ -26,7 +26,7 @@ public class AcmeProperties {
 
     private InetAddress remoteAddress;
 
-    private final Security security = new Security();
+    private Security security ;
 
 
     @Setter

@@ -1,5 +1,6 @@
 package com.paderlol.spring.practice.properties.pojo;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,12 +9,11 @@ import lombok.ToString;
  * 第三方配置类
  * @author pader
  */
-@Setter
-@Getter
+@Data
 @ToString
 public class ThirdComponent {
 
     private String url;
-    private String port;
-    private String enable;
+    private int port;
+    private boolean enable;
 }

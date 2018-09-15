@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    include: chinese
+
+acme:
+  enabled: false
+  security:
+    password: "1234567"
+    roles:
+    - "USER"
+    - "ADMIN"
+# 第三方配置引用
+third:
+  port: 9990
+  enable: true
+  url: test.com
+map:
+  practice:
+    string-map:
+      key:
+        "value-dev"
+
+    entity-map:
+      key2:
+        name: "name-dev-test-1"
+        age: 10
+      key3: "name-dev-test-2,100"
+
+#string-list: value-list-1-dev,value-list-2-dev
+#EQ
+#string-list:
+#    - value-list-1-dev
+#    - value-list-2-dev
+collection:
+  practice:
+    string-list:
+    - value-list-1-dev-test
+    - value-list-2-dev-test
+    entity-list:
+    - name: "Jack-dev-test"
+      age: 20
+    - name: "Tom-dev-test"
+      age: 23
