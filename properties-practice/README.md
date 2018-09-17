@@ -198,3 +198,86 @@ public class OwnerProperties {
 **官方推荐属性写法**：
 
 > 在尽可能的情况下,请使用小写的短横线命名的方法会,比如： `my.property-name=acme`.
+
+#### 自定义属性转换
+
+>当Spring绑定到`@ConfigurationProperties` bean时，Spring Boot会尝试将外部应用程序属性强制转换为正确的类型。如果需要自定义类型转换，可以提供`ConversionService` bean（带有名为conversionService的bean）或自定义属性编辑器（通过`CustomEditorConfigurer` bean）或自定义转换器（带有注释为@ConfigurationPropertiesBinding的bean定义）。
+
+1. `CustomEditorConfigurer`实现方式
+
+   > 下面的例子是把属性中定义的字符串转换成**Movie**,并且把**name**的值大写
+
+   - 继承**PropertyEditorSupport**
+
+     ```java
+     	@Override
+         public String getAsText() {
+             Movie movie = (Movie) getValue();
+             return movie == null ? "" : movie.getName();
+         }
+     
+         @Override
+         public void setAsText(String text) throws IllegalArgumentException {
+             log.info("继承[PropertyEditorSupport]类,转换数据={}", text);
+             //通过短分隔符号分割字符串转换成Movie对象
+             String[] data = text.split("-");
+             //大写Moive.name
+             Movie movie = Movie.builder().name(data[0].toUpperCase()).seat(Integer.parseInt(data[1]))
+                     .build();
+             setValue(movie);
+         }
+     ```
+
+   - 实现**PropertyEditorRegistrar**接口
+
+     ```java
+     	@Override
+         public void registerCustomEditors(PropertyEditorRegistry registry) {
+             registry.registerCustomEditor(Movie.class,this);
+         }
+     ```
+
+   - 注册自定义的**PropertyEditor**
+
+     ```java
+     @Bean
+         public CustomEditorConfigurer customEditorConfigurer() {
+             CustomEditorConfigurer customEditorConfigurer = new 				CustomEditorConfigurer();
+     		// 有两种注册方式 这是第一种
+             customEditorConfigurer.setPropertyEditorRegistrars(
+                     new PropertyEditorRegistrar[]{ new CustomMovieEditor() });
+             // 第二种
+             Map<Class<?>,Class<? extends PropertyEditor>> maps = new HashMap<>();
+             maps.put(Movie.class,CustomMovieEditor.class);
+             
+             return customEditorConfigurer;
+         }
+     ```
+
+2. 实现**Converter**接口+**@ConfigurationPropertiesBinding**注解
+
+   > - 以下和第一种Movie的例子效果差不多,但是**Converter**接口相比**PropertyEditor**接口更加灵活一些,**PropertyEditor**接口仅限于String转换,**Converter**可以自定义别的。
+   > - **Formatter**接口实现是不能对属性完成转换的具体参考源码**ConversionServiceDeducer**
+   > - **@ConfigurationPropertiesBinding**是限定符注解**@Qualifier**的派生类而已,具体为什么加这个注解起什么作用,参考**org.springframework.boot.context.properties.ConversionServiceDeducer**
+   > - 个人比较推荐使用**Converter**接口来完成属性转换,**Formatter**和**PropertyEditor**接口通常用于**Controller**中的接收参数的转换
+   >
+   >
+
+   ```java
+   //注意
+   @Component 
+   @ConfigurationPropertiesBinding
+   public class StringToPersonConverter implements Converter<String, Person> {
+   
+       @Override
+       public Person convert(String from) {
+           log.info("使用[Converter]接口,转换数据={}", from);
+           String[] data = from.split(",");
+           return Person.builder().name(data[0]).age(Integer.parseInt(data[1])).build();
+       }
+   }
+   ```
+
+
+
+   **Note：**官方文档上还有介绍使用实现**org.springframework.core.convert.ConversionService** 接口,来完成属性的转换,不过大多数情况下不用自己去实现这个接口,因为默认的实现**ApplicationConversionService**已经包含了很多方法,可以只需要使用到上述的两种方式去实现就够了

@@ -25,6 +25,8 @@ map:
         name: "name-dev-test-1"
         age: 10
       key3: "name-dev-test-2,100"
+    movie-map:
+      key4: "Cold Like a Killer-200"
 
 #string-list: value-list-1-dev,value-list-2-dev
 #EQ

@@ -18,16 +18,18 @@ import org.springframework.test.web.servlet.MockMvc;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = PropertiesPracticeApplication.class)
 @AutoConfigureMockMvc
-public class StringToPersonConverterControllerIntegrationTest {
+public class StringToCreditCardEditorControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void getStringToPersonTest() throws Exception {
-        mockMvc.perform(get("/person?person=1,2000")).andDo(print())
-                .andExpect(jsonPath("$.name", is("1")))
-                .andExpect(jsonPath("$.age", is(2000)))
+    public void parseCreditCardNumberTest() throws Exception {
+        mockMvc.perform(get("/credit-card/1234-1234-1111-0011")).andDo(print())
+                .andExpect(jsonPath("$.rawCardNumber", is("1234-1234-1111-0011")))
+                .andExpect(jsonPath("$.bankIdNo", is(123412)))
+                .andExpect(jsonPath("$.accountNo", is(341111001)))
+                .andExpect(jsonPath("$.checkCode", is(1)))
                 .andExpect(status().isOk());
     }
 }

@@ -7,6 +7,7 @@ import com.paderlol.spring.practice.properties.pojo.AcmeProperties;
 import com.paderlol.spring.practice.properties.pojo.AcmeProperties.Security;
 import com.paderlol.spring.practice.properties.pojo.CollectionProperties;
 import com.paderlol.spring.practice.properties.pojo.MapProperties;
+import com.paderlol.spring.practice.properties.pojo.Movie;
 import com.paderlol.spring.practice.properties.pojo.Person;
 import com.paderlol.spring.practice.properties.pojo.ThirdComponent;
 import com.paderlol.spring.practice.properties.service.LanguageService;
@@ -43,11 +44,13 @@ public class PropertiesIntegrationTest {
     @Test
     public void mapPropertiesTest() {
         MapProperties actualMapProperties = new MapProperties();
+        actualMapProperties.getStringMap().put("key", "value-dev");
         actualMapProperties.getEntityMap()
                 .put("key2", Person.builder().name("name-dev-test-1").age(10).build());
         actualMapProperties.getEntityMap()
                 .put("key3", Person.builder().name("name-dev-test-2").age(100).build());
-        actualMapProperties.getStringMap().put("key", "value-dev");
+        actualMapProperties.getMovieMap()
+                .put("key4", Movie.builder().name("COLD LIKE A KILLER").seat(200).build());
 
         assertThat(mapProperties).isEqualToComparingFieldByField(actualMapProperties);
     }
@@ -91,4 +94,6 @@ public class PropertiesIntegrationTest {
 
         assertThat(collectionProperties).isEqualToComparingFieldByField(actualCollectionProperties);
     }
+
+
 }

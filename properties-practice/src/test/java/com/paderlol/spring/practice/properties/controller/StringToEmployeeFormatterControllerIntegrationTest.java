@@ -25,6 +25,8 @@ public class StringToEmployeeFormatterControllerIntegrationTest {
 
     @Test
     public void getStringToEmployeeTest() throws Exception {
-        mockMvc.perform(get("/emp?employee=1,2000")).andDo(print()).andExpect(jsonPath("$.empNo", is("1"))).andExpect(jsonPath("$.salary", is(2000))).andExpect(status().isOk());
+        mockMvc.perform(get("/emp?employee=1,2000")).andDo(print())
+                .andExpect(jsonPath("$.empNo", is("1"))).andExpect(jsonPath("$.salary", is(2000)))
+                .andExpect(status().isOk());
     }
 }

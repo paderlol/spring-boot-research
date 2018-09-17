@@ -18,16 +18,15 @@ import org.springframework.test.web.servlet.MockMvc;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = PropertiesPracticeApplication.class)
 @AutoConfigureMockMvc
-public class StringToPersonConverterControllerIntegrationTest {
+public class StringToExoticTypeEditorControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void getStringToPersonTest() throws Exception {
-        mockMvc.perform(get("/person?person=1,2000")).andDo(print())
-                .andExpect(jsonPath("$.name", is("1")))
-                .andExpect(jsonPath("$.age", is(2000)))
+    public void parseExoticTypeTest() throws Exception {
+        mockMvc.perform(get("/exotic-type/passion-fruit")).andDo(print())
+                .andExpect(jsonPath("$.name", is("PASSION-FRUIT")))
                 .andExpect(status().isOk());
     }
 }
