@@ -1,21 +1,20 @@
 spring:
   application:
     name: "random-practice-prod"
-map:
-  practice:
-      string-map:
-        key:
-          "value-prod"
+demo:
+  map:
+    string-map:
+      key:
+        "value-prod"
 
-      entity-map:
-        key2:
-          name: "person name-prod"
-          age: 10
-        key3:
-          name: "person name-prod"
-          age: 10
-collection:
-  practice:
+    entity-map:
+      key2:
+        name: "person name-prod"
+        age: 10
+      key3:
+        name: "person name-prod"
+        age: 10
+  collection:
     string-list:
     - value-list-1-prod
     - value-list-2-prod

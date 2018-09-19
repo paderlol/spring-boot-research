@@ -4,30 +4,12 @@ spring:
   profiles:
     include: prod
     active: dev
-map:
-  practice:
-    string-map:
-      key:
-        "value"
 
-    entity-map:
-      key2:
-        name: "person name"
-        age: 10
-      key3:
-        name: "person name"
-        age: 10
-collection:
-  practice:
-    string-list:
-    - value-list-1
-    - value-list-2
-    entity-list:
-    - name: "Jack"
-      age: 20
-    - name: "Tom"
-      age: 23
-
+demo:
+  duration:
+    second: 40d
+    millis: 40ms
+    minutes: 40
 
 server:
   port: 8081

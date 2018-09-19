@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  *
  * @author pader
  */
-@ConfigurationProperties("acme")
+@ConfigurationProperties("demo.acme")
 @Component
 @Getter
 @Setter

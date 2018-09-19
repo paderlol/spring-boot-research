@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @Builder
-@ConfigurationProperties("movie")
+@ConfigurationProperties("demo.movie")
 public class Movie {
 
     private String name;

@@ -1,25 +1,18 @@
 spring:
   profiles:
     include: chinese
-
-acme:
-  enabled: false
-  security:
-    password: "1234567"
-    roles:
-    - "USER"
-    - "ADMIN"
-# 第三方配置引用
-third:
-  port: 9990
-  enable: true
-  url: test.com
-map:
-  practice:
+demo:
+  acme:
+    enabled: false
+    security:
+      password: "1234567"
+      roles:
+      - "USER"
+      - "ADMIN"
+  map:
     string-map:
       key:
         "value-dev"
-
     entity-map:
       key2:
         name: "name-dev-test-1"
@@ -27,14 +20,17 @@ map:
       key3: "name-dev-test-2,100"
     movie-map:
       key4: "Cold Like a Killer-200"
+    alpha-numeric-map:
+      "[/key1]": value1
+      "[/key2]": value2
+      /key3: value3
 
-#string-list: value-list-1-dev,value-list-2-dev
-#EQ
-#string-list:
-#    - value-list-1-dev
-#    - value-list-2-dev
-collection:
-  practice:
+  #string-list: value-list-1-dev,value-list-2-dev
+  #EQ
+  #string-list:
+  #    - value-list-1-dev
+  #    - value-list-2-dev
+  collection:
     string-list:
     - value-list-1-dev-test
     - value-list-2-dev-test
@@ -43,3 +39,15 @@ collection:
       age: 20
     - name: "Tom-dev-test"
       age: 23
+  valid:
+    email: 22222@qq.com
+    security:
+      user-name: pader
+      password: 123456
+  valid-custom:
+    host: "127.0.0.1"
+    port: 8080
+  third:
+    enable: true
+    url: test.com
+    port: 9990

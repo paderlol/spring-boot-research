@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author pader
  */
-@ConfigurationProperties("map.practice")
+@ConfigurationProperties("demo.map")
 @Getter
 @Component
 public class MapProperties {
@@ -17,5 +17,6 @@ public class MapProperties {
     private final Map<String, String> stringMap = new HashMap<>();
     private final Map<String, Person> entityMap = new HashMap<>();
     private final Map<String, Movie> movieMap = new HashMap<>();
+    private final Map<String, String> alphaNumericMap = new HashMap<>();
 
 }

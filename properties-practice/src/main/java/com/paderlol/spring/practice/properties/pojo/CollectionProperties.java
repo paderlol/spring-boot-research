@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author pader
  */
 @Component
-@ConfigurationProperties("collection.practice")
+@ConfigurationProperties("demo.collection")
 @Getter
 public class CollectionProperties {
 

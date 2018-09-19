@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ThirdConfiguration {
 
-    @ConfigurationProperties("third")
+    @ConfigurationProperties("demo.third")
     @Bean
     public ThirdComponent thirdComponent(){
         return new ThirdComponent();

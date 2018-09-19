@@ -6,11 +6,13 @@ import com.paderlol.spring.practice.PropertiesPracticeApplication;
 import com.paderlol.spring.practice.properties.pojo.AcmeProperties;
 import com.paderlol.spring.practice.properties.pojo.AcmeProperties.Security;
 import com.paderlol.spring.practice.properties.pojo.CollectionProperties;
+import com.paderlol.spring.practice.properties.pojo.DurationProperties;
 import com.paderlol.spring.practice.properties.pojo.MapProperties;
 import com.paderlol.spring.practice.properties.pojo.Movie;
 import com.paderlol.spring.practice.properties.pojo.Person;
 import com.paderlol.spring.practice.properties.pojo.ThirdComponent;
 import com.paderlol.spring.practice.properties.service.LanguageService;
+import java.time.Duration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class PropertiesIntegrationTest {
     @Autowired LanguageService languageService;
 
     @Autowired CollectionProperties collectionProperties;
+
+    @Autowired DurationProperties durationProperties;
+
 
     @Test
     public void thirdComponentTest() {
@@ -51,7 +56,9 @@ public class PropertiesIntegrationTest {
                 .put("key3", Person.builder().name("name-dev-test-2").age(100).build());
         actualMapProperties.getMovieMap()
                 .put("key4", Movie.builder().name("COLD LIKE A KILLER").seat(200).build());
-
+        actualMapProperties.getAlphaNumericMap().put("/key1", "value1");
+        actualMapProperties.getAlphaNumericMap().put("/key2", "value2");
+        actualMapProperties.getAlphaNumericMap().put("key3", "value3");
         assertThat(mapProperties).isEqualToComparingFieldByField(actualMapProperties);
     }
 
@@ -93,6 +100,16 @@ public class PropertiesIntegrationTest {
         actualCollectionProperties.getStringList().add("value-list-2-dev-test");
 
         assertThat(collectionProperties).isEqualToComparingFieldByField(actualCollectionProperties);
+    }
+
+    @Test
+    public void durationPropertiesTest() {
+        DurationProperties actualDurationProperties = new DurationProperties();
+        actualDurationProperties.setMillis(Duration.ofMillis(40));
+        actualDurationProperties.setMinutes(Duration.ofMinutes(40));
+        actualDurationProperties.setSecond(Duration.ofDays(40));
+
+        assertThat(durationProperties).isEqualToComparingFieldByField(actualDurationProperties);
     }
 
 
