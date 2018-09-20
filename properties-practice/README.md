@@ -281,3 +281,176 @@ public class OwnerProperties {
 
 
    **Note：**官方文档上还有介绍使用实现**org.springframework.core.convert.ConversionService** 接口,来完成属性的转换,不过大多数情况下不用自己去实现这个接口,因为默认的实现**ApplicationConversionService**已经包含了很多方法,可以只需要使用到上述的两种方式去实现就够了
+   
+   #### Map对象Key 特殊处理
+   
+   > 绑定到Map属性时，如果键包含除小写字母数字字符以外的任何内容或 - ，则需要使用括号表示法以保留原始值。如果密钥未被[]包围，则删除任何非字母数字或字符的字符。例如，考虑将以下属性绑定到Map
+   
+   ```yaml
+      alpha-numeric-map:
+         "[/key1]": value1
+         "[/key2]": value2
+         /key3: value3
+   
+   ```
+   
+   源码里面定义的规则
+   
+   ```java
+   public enum Form {
+   
+   		/**
+   		 * The original form as specified when the name was created or parsed. For
+   		 * example:
+   		 * <ul>
+   		 * <li>"{@code foo-bar}" = "{@code foo-bar}"</li>
+   		 * <li>"{@code fooBar}" = "{@code fooBar}"</li>
+   		 * <li>"{@code foo_bar}" = "{@code foo_bar}"</li>
+   		 * <li>"{@code [Foo.bar]}" = "{@code Foo.bar}"</li>
+   		 * </ul>
+   		 */
+   		ORIGINAL,
+   
+   		/**
+   		 * The uniform configuration form (used for equals/hashCode; lower-case with only
+   		 * alphanumeric characters).
+   		 * <ul>
+   		 * <li>"{@code foo-bar}" = "{@code foobar}"</li>
+   		 * <li>"{@code fooBar}" = "{@code foobar}"</li>
+   		 * <li>"{@code foo_bar}" = "{@code foobar}"</li>
+   		 * <li>"{@code [Foo.bar]}" = "{@code Foo.bar}"</li>
+   		 * </ul>
+   		 */
+   		UNIFORM
+   
+   	}
+   ```
+   
+   
+   
+   #### Durations 转换
+   
+   ```java
+   @ConfigurationProperties("demo.duration")
+   @Component
+   @Data
+   public class DurationProperties {
+   
+       @DurationUnit(ChronoUnit.DAYS)
+       private Duration second = Duration.ofSeconds(30);
+       private Duration millis = Duration.ofMillis(30);
+       @DurationUnit(ChronoUnit.MINUTES)
+       private Duration minutes = Duration.ofMinutes(30);
+   
+   
+   }
+   
+   ```
+   
+   Duration 在属性文件配置中支持后缀描述符：
+   
+   - `ns` for nanoseconds
+   - `us` for microseconds
+   - `ms` for milliseconds
+   - `s` for seconds
+   - `m` for minutes
+   - `h` for hours
+   - `d` for days
+   
+   **Note**:`@DurationUnit`可以覆盖当前的时间单位,并且如果没有配置这个注解,也没有在属性文件中配置后缀描述符,默认转换的是**秒**单位
+   
+   
+   
+   ### @ConfigurationProperties验证
+   
+   > 只要使用Spring的@Validated注释注释，Spring Boot就会尝试验证@ConfigurationProperties类。您可以直接在配置类上使用JSR-303 javax.validation约束注释。为此，请确保符合条件的JSR-303实现位于类路径中，然后将约束注释添加到字段中，如以下示例所示
+   
+   ```java
+   /**
+    * 简单的属性验证包含嵌套属性
+    *
+    * @author pader
+    */
+   @ConfigurationProperties("demo.valid")
+   @Component
+   @Validated
+   @Data
+   @Builder
+   public class ValidatorProperties {
+   
+       @Email
+       @NotNull
+       private String email;
+   	/**
+        * @Valid注解可以关联嵌套属性,可以保证嵌套属性没有值也可以验证
+        */
+       @Valid
+       private Security security;
+   
+       @Data
+       @Builder
+       public static class Security {
+   
+           @NotBlank(message = "userName must be not null")
+           private String userName;
+   
+           @NotBlank(message = "password must be not null")
+           private String password;
+   
+           @NotEmpty
+           private List<String> roles = new ArrayList<>(Collections.singleton("USER"));
+   
+       }
+   }
+   ```
+   
+   
+   
+   - **自定义Validator**
+   
+   > 您还可以通过创建名为**configurationPropertiesValidator**的bean定义来添加自定义Spring Validator。应该将`@Bean`方法声明为**static**。配置属性验证器是在应用程序生命周期的早期创建的，并且将`@Bean`方法声明为static可以创建bean而无需实例化@Configuration类。这样做可以避免早期实例化可能导致的任何问题。
+   
+   1. ​	实现Validator接口
+   
+      ```java
+      /**
+       * 验证SampleProperties 属性是否为空
+       * 验证SampleProperties host 格式是否正确
+       * @author pader
+       */
+      public class SamplePropertiesValidator implements Validator {
+      
+          final Pattern pattern = Pattern.compile("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+      
+          @Override
+          public boolean supports(Class<?> type) {
+              return type == CustomValidatorProperties.class;
+          }
+      
+          @Override
+          public void validate(Object o, Errors errors) {
+              ValidationUtils.rejectIfEmpty(errors, "host", "host.empty");
+              ValidationUtils.rejectIfEmpty(errors, "port", "port.empty");
+              CustomValidatorProperties properties = (CustomValidatorProperties) o;
+              if (properties.getHost() != null
+                      && !this.pattern.matcher(properties.getHost()).matches()) {
+                  errors.rejectValue("host", "Invalid host");
+              }
+          }
+      
+      }
+      ```
+   
+   2. 实现注入Validator接口
+   
+      ```java
+      @Configuration
+      public class CustomValidatorConfiguration {
+      
+      
+          @Bean
+          public static Validator configurationPropertiesValidator() {
+              return new SamplePropertiesValidator();
+          }
+      }
+      ```
