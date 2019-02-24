@@ -33,6 +33,8 @@
   <module>random-practice</module>
   <module>properties-practice</module>
   <module>spring-webmvc</module>
+  <module>spring-webmvc-annotation</module>
+  <module>spring-webmvc-auto</module>
 </modules>
 
 </project>

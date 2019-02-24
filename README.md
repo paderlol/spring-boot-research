@@ -9,6 +9,8 @@
 #### [随机属性注入](https://github.com/paderlol/spring-boot-research/tree/master/random-practice)
 #### [application属性文件](https://github.com/paderlol/spring-boot-research/tree/master/properties-practice)
 #### [Spring WebMvc 手动配置](https://github.com/paderlol/spring-boot-research/tree/master/spring-webmvc)
+#### [Spring WebMvc 注解配置](https://github.com/paderlol/spring-boot-research/tree/master/spring-webmvc-annotation)
+#### [Spring WebMvc 自动化配置](https://github.com/paderlol/spring-boot-research/tree/master/spring-webmvc-auto)
 
 
 
