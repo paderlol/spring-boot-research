@@ -11,11 +11,11 @@
   <packaging>pom</packaging>
   <name>spring-boot-research</name>
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.4.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>2.0.4.RELEASE</version>
+  <relativePath/> <!-- lookup parent from repository -->
+</parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,6 +32,7 @@
   <module>runner-practice</module>
   <module>random-practice</module>
   <module>properties-practice</module>
+  <module>spring-webmvc</module>
 </modules>
 
 </project>
