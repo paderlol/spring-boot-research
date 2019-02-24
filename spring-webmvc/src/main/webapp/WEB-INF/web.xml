@@ -4,6 +4,7 @@
          version="3.0">
 
 
+    <!-- 配置Spring DispatcherServlet-->
     <servlet>
         <servlet-name>app</servlet-name>
         <servlet-class>
@@ -14,7 +15,7 @@
             <param-value>/WEB-INF/app-context.xml</param-value>
         </init-param>
     </servlet>
-
+    <!-- 映射路径 -->
     <servlet-mapping>
         <servlet-name>app</servlet-name>
         <url-pattern>/</url-pattern>
